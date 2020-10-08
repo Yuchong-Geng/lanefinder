@@ -16,9 +16,9 @@ def read_config():
 
 def main():
     # set video stream to fullscreen
-    window_name = 'lanefinder'
-    cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
-    cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    # window_name = 'lanefinder'
+    # cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+    # cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     config = read_config()
 
     lanefinder = Lanefinder(
