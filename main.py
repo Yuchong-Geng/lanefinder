@@ -31,7 +31,7 @@ def main():
 
     # set window name to one with fullscren property
     # and run
-    lanefinder.window = window_name
+    # lanefinder.window = window_name
     # lanefinder.stream()
     lanefinder.write()
     lanefinder.destroy()
