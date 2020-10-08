@@ -160,18 +160,18 @@ class Lanefinder:
                     thickness=1
                 )
             result.write(pred)
-            if self._window is not None:
-                # show in window with fullscreen setup
-                cv2.imshow(self._window, pred)
+            # if self._window is not None:
+            #     # show in window with fullscreen setup
+            #     cv2.imshow(self._window, pred)
 
-            else:
-                # user did not specify window name
-                # for fullscreen use so use default opencv size
-                cv2.imshow('default', pred)
+            # else:
+            #     # user did not specify window name
+            #     # for fullscreen use so use default opencv size
+            #     cv2.imshow('default', pred)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                # exit on key press
-                break
+            # if cv2.waitKey(1) & 0xFF == ord('q'):
+            #     # exit on key press
+            #     break
 
     def destroy(self):
         """
