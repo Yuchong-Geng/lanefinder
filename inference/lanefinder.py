@@ -10,7 +10,7 @@ class Lanefinder:
         self._window = None
         self._engine = self._get_tpu_engine(model)
         self._cap = cv2.VideoCapture(0)
-        self._cap_writer = cv2.VideoCapture("/Users/evangeng/laneFinder/lanefinder/ithaca_roads_video.mp4")
+        self._cap_writer = cv2.VideoCapture("/home/pi/lanefinder/ithaca_roads_video.mp4")
         self._size = input_shape
         self._output_shape = output_shape
         self._quant = quant
