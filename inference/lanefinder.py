@@ -122,14 +122,14 @@ class Lanefinder:
         # We need to set resolutions. 
         # so, convert them from float to integer. 
    
-        size = (1280 / 2, 720 / 2)
+        size = (640, 360)
 
         # Below VideoWriter object will create 
         # a frame of above defined The output  
         # is stored in 'filename.avi' file. 
         result = cv2.VideoWriter('test.avi',  
                                 cv2.VideoWriter_fourcc(*'MJPG'), 
-                                10, size) 
+                                30, size) 
         while True:
             # get next video frame
             ret, frame = self._cap_writer.read()
