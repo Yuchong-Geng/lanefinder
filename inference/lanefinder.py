@@ -122,7 +122,7 @@ class Lanefinder:
         # We need to set resolutions. 
         # so, convert them from float to integer. 
    
-        size = (480, 320)
+        size = (1280, 720)
 
         # Below VideoWriter object will create 
         # a frame of above defined The output  
