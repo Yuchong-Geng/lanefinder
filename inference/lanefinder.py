@@ -10,6 +10,7 @@ class Lanefinder:
         self._window = None
         self._engine = self._get_tpu_engine(model)
         self._cap = cv2.VideoCapture(0)
+        self._cap_writer = cv2.VideoCapture("/Users/evangeng/laneFinder/lanefinder/ithaca_roads_video.mp4")
         self._size = input_shape
         self._output_shape = output_shape
         self._quant = quant
@@ -98,6 +99,67 @@ class Lanefinder:
                     thickness=1
                 )
 
+            if self._window is not None:
+                # show in window with fullscreen setup
+                cv2.imshow(self._window, pred)
+
+            else:
+                # user did not specify window name
+                # for fullscreen use so use default opencv size
+                cv2.imshow('default', pred)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                # exit on key press
+                break
+
+    def write(self):
+        """
+        Write input video to an output video
+
+        :return:    void
+        """
+        # Below VideoWriter object will create 
+        # a frame of above defined The output  
+        # is stored in 'filename.avi' file. 
+        result = cv2.VideoWriter('test.avi',  
+                                cv2.VideoWriter_fourcc(*'MJPG'), 
+                                10, size) 
+        while True:
+            # get next video frame
+            ret, frame = self._cap_writer.read()
+
+            if not ret:
+                # frame has not been
+                # retrieved
+                break
+
+            frame = np.array(frame)
+            frmcpy = frame.copy()
+
+            frame = cv2.resize(frame, tuple(self._size))
+            frame = frame.astype(np.float32)
+
+            if self._engine is not None:
+                # TPU engine has been initiated
+                # so run inference steps
+                frame = self._preprocess(frame)
+                pred_obj = self._engine.run_inference(frame.flatten())
+                pred = self._postprocess(pred_obj, frmcpy)
+
+            else:
+                # no TPU detected so output recorded
+                # frame with warning sign on it
+                frmcpy = cv2.resize(frmcpy, self._output_shape)
+                pred = cv2.putText(
+                    frmcpy,
+                    'TPU has not been detected!',
+                    org=(self._output_shape[0] // 16, self._output_shape[1] // 2),
+                    fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=1,
+                    color=(0, 0, 255),
+                    thickness=1
+                )
+            result.write(pred)
             if self._window is not None:
                 # show in window with fullscreen setup
                 cv2.imshow(self._window, pred)

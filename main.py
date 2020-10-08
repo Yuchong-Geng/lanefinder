@@ -9,7 +9,7 @@ def read_config():
         raise FileNotFoundError('Could not find config file')
 
     with open('config.yaml', 'r') as file:
-        config = yaml.load(file)
+        config = yaml.load(file, Loader=yaml.FullLoader)
 
     return config
 
@@ -32,7 +32,8 @@ def main():
     # set window name to one with fullscren property
     # and run
     lanefinder.window = window_name
-    lanefinder.stream()
+    # lanefinder.stream()
+    lanefinder.write()
     lanefinder.destroy()
 
 
