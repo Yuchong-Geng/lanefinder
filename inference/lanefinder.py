@@ -118,6 +118,12 @@ class Lanefinder:
 
         :return:    void
         """
+
+        # We need to set resolutions. 
+        # so, convert them from float to integer. 
+   
+        size = (480, 320)
+
         # Below VideoWriter object will create 
         # a frame of above defined The output  
         # is stored in 'filename.avi' file. 
